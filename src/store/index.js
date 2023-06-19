@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import accounts from "./accounts";
+import report from "./report";
 
 export const store = configureStore({
   reducer: {
-    accounts,
+    report,
   },
 });

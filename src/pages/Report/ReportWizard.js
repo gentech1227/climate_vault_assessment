@@ -1,4 +1,4 @@
-import { DatePicker, Select } from "antd";
+import { Button, DatePicker, Select } from "antd";
 import React from "react";
 import {
   DATE_FORMAT,
@@ -11,7 +11,7 @@ import {
 
 const { Option } = Select;
 
-const ReportWizard = ({ from, to, type, data, onChange }) => {
+const ReportWizard = ({ from, to, type, data, onChange, onSearch }) => {
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-wrap mt-4">
@@ -21,6 +21,7 @@ const ReportWizard = ({ from, to, type, data, onChange }) => {
             onChange(dt[0], dt[1], type, data);
           }}
           format={DATE_FORMAT}
+          allowClear={false}
         />
         <Select
           className="mx-4 w-36"
@@ -32,13 +33,16 @@ const ReportWizard = ({ from, to, type, data, onChange }) => {
           <Option key={TRANSACTION_TYPE_ORDER}>Order</Option>
         </Select>
         <Select
-          className="w-36"
+          className="w-36 mr-4"
           value={data}
           onChange={(val) => onChange(from, to, type, val)}
         >
           <Option key={TRANSACTION_DATA_TIMES}>Times</Option>
           <Option key={TRANSACTION_DATA_AMOUNT}>Amount</Option>
         </Select>
+        <Button onClick={onSearch} type="primary">
+          Generate Chart
+        </Button>
       </div>
     </div>
   );
