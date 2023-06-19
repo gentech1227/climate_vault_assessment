@@ -27,7 +27,6 @@ const ReportChart = () => {
   };
 
   const options = {
-    animationEnabled: true,
     colorSet: "colorSet2",
     title: {
       text: "Monthly Transactions",
@@ -80,9 +79,8 @@ const ReportChart = () => {
     ],
   };
   return (
-    <div className="w-2/3">
+    <div className="w-2/3 min-w-96">
       <CanvasJSChart options={options} />
-      {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
     </div>
   );
 };
