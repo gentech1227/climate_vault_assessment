@@ -1,0 +1,29 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+body {
+  user-select: none;
+}
+.ant-list-item:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 14px;
+  border: 3px solid gray;
+}
+*::-webkit-scrollbar:horizontal {
+  height: 5px;
+}
