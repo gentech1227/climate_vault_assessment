@@ -1,5 +1,5 @@
-import API from "../api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { API } from "../api";
 
 const initialState = {
   loading: false,
@@ -13,7 +13,7 @@ const initialState = {
 export const getReportData = createAsyncThunk(
   "report/getReportData",
   async (params, thunkAPI) => {
-    const response = await API.report.getReportData(params);
+    const response = await API.getReportData(params);
     return response;
   }
 );

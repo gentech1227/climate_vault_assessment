@@ -1,32 +1,33 @@
-import { FileSearchOutlined, SettingOutlined } from "@ant-design/icons";
+import { useEffect, useState } from "react";
+
+import { useLocation, useNavigate } from "react-router";
 
 import { Layout, Menu } from "antd";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { FileSearchOutlined, SettingOutlined } from "@ant-design/icons";
 
 import "./style.css";
 
 const { Sider } = Layout;
 
-function getItem(label, key, icon, children, type) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  };
-}
+const getItem = (label, key, icon, children, type) => ({
+  key,
+  icon,
+  children,
+  label,
+  type,
+});
+
 const items = [
   getItem("Report", "report", <FileSearchOutlined />),
   getItem("Configuration", "configuration", <SettingOutlined />),
 ];
+
 const urls = {
   report: "/report",
   configuration: "/configuration",
 };
 
-const ClimateSider = () => {
+export const ClimateSider = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [selected, setSelected] = useState("");
@@ -34,9 +35,9 @@ const ClimateSider = () => {
 
   useEffect(() => {
     setSelected(
-      (Object.entries(urls).find(
-        ([key, value]) => value === location.pathname
-      ) || [""])[0]
+      (Object.entries(urls).find((value) => value[1] === location.pathname) ?? [
+        "",
+      ])[0]
     );
   }, [location.pathname]);
 
@@ -63,5 +64,3 @@ const ClimateSider = () => {
     </Sider>
   );
 };
-
-export default ClimateSider;

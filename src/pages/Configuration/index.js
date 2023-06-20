@@ -1,7 +1,1 @@
-import React from "react";
-
-const Configuration = () => {
-  return <div>CONFIGURATION</div>;
-};
-
-export default Configuration;
+export const Configuration = () => <div>CONFIGURATION</div>;

@@ -2,9 +2,10 @@ import dayjs from "dayjs";
 import { MONTH_FORMAT } from "../constants";
 import db from "./mock.json";
 
-const getReportData = ({ from, to, type, data }) => {
+export const getReportData = ({ from, to, type, data }) => {
   let monthly = {},
     total = 0;
+
   for (
     let date = dayjs(`${from.year()}-${from.month() + 1}-1`);
     date <= to;
@@ -14,7 +15,7 @@ const getReportData = ({ from, to, type, data }) => {
   }
   const filtered = db.filter(
     (item) =>
-      item.type == type && dayjs(item.date) >= from && dayjs(item.date) <= to
+      +item.type === +type && dayjs(item.date) >= from && dayjs(item.date) <= to
   );
   filtered.forEach((item) => {
     total += item[data];
@@ -24,6 +25,7 @@ const getReportData = ({ from, to, type, data }) => {
       [monthString]: monthly[monthString] + item[data],
     };
   });
+
   return {
     total,
     monthly: Object.keys(monthly).map((month) => ({
@@ -33,8 +35,4 @@ const getReportData = ({ from, to, type, data }) => {
     data,
     count: filtered.length,
   };
-};
-
-export default {
-  getReportData,
 };

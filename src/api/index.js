@@ -1,5 +1,3 @@
-import report from "./report";
+import { getReportData } from "./report";
 
-export default {
-  report,
-};
+export const API = { getReportData };

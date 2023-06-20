@@ -1,13 +1,15 @@
-import { Col, Row, Statistic } from "antd";
-import React from "react";
-import { useSelector } from "react-redux";
-import {
-  TRANSACTION_DATA_AMOUNT,
-  TRANSACTION_DATA_TIMES,
-} from "../../constants";
+import React, { useMemo } from "react";
 
-const ReportStatistics = () => {
+import { Col, Row, Statistic } from "antd";
+
+import { useSelector } from "react-redux";
+
+import { TRANSACTION_DATA } from "../../constants";
+
+export const ReportStatistics = () => {
   const { count, total, data } = useSelector(({ report }) => report);
+
+  const amountMode = useMemo(() => data === TRANSACTION_DATA.AMOUNT, [data]);
 
   return (
     <Row gutter={16}>
@@ -16,17 +18,13 @@ const ReportStatistics = () => {
       </Col>
       <Col span={6}>
         <Statistic
-          title={`Total ${
-            data === TRANSACTION_DATA_AMOUNT ? "Amount" : "Times"
-          }`}
+          title={`Total ${data === amountMode ? "Amount" : "Times"}`}
           value={total}
           precision={2}
-          prefix={data === TRANSACTION_DATA_AMOUNT && "USD"}
-          suffix={data === TRANSACTION_DATA_TIMES && "ms"}
+          prefix={amountMode && "USD"}
+          suffix={!amountMode && "ms"}
         />
       </Col>
     </Row>
   );
 };
-
-export default ReportStatistics;

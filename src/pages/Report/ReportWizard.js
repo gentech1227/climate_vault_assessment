@@ -1,17 +1,16 @@
-import { Button, DatePicker, Select } from "antd";
 import React from "react";
+
+import { Button, DatePicker, Select } from "antd";
+
 import {
   DATE_FORMAT,
-  TRANSACTION_DATA_AMOUNT,
-  TRANSACTION_DATA_TIMES,
-  TRANSACTION_TYPE_ESTIMATE,
-  TRANSACTION_TYPE_ORDER,
-  TRANSACTION_TYPE_QUOTE,
+  TRANSACTION_DATA,
+  TRANSACTION_TYPE,
 } from "../../constants";
 
 const { Option } = Select;
 
-const ReportWizard = ({ from, to, type, data, onChange, onSearch }) => {
+export const ReportWizard = ({ from, to, type, data, onChange, onSearch }) => {
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-wrap mt-4">
@@ -28,17 +27,17 @@ const ReportWizard = ({ from, to, type, data, onChange, onSearch }) => {
           value={type}
           onSelect={(val) => onChange(from, to, val, data)}
         >
-          <Option key={TRANSACTION_TYPE_ESTIMATE}>Estimate</Option>
-          <Option key={TRANSACTION_TYPE_QUOTE}>Quote</Option>
-          <Option key={TRANSACTION_TYPE_ORDER}>Order</Option>
+          <Option key={TRANSACTION_TYPE.ESTIMATE}>Estimate</Option>
+          <Option key={TRANSACTION_TYPE.QUOTE}>Quote</Option>
+          <Option key={TRANSACTION_TYPE.ORDER}>Order</Option>
         </Select>
         <Select
           className="w-36 mr-4"
           value={data}
           onChange={(val) => onChange(from, to, type, val)}
         >
-          <Option key={TRANSACTION_DATA_TIMES}>Times</Option>
-          <Option key={TRANSACTION_DATA_AMOUNT}>Amount</Option>
+          <Option key={TRANSACTION_DATA.TIMES}>Times</Option>
+          <Option key={TRANSACTION_DATA.AMOUNT}>Amount</Option>
         </Select>
         <Button onClick={onSearch} type="primary">
           Generate Chart
@@ -47,5 +46,3 @@ const ReportWizard = ({ from, to, type, data, onChange, onSearch }) => {
     </div>
   );
 };
-
-export default ReportWizard;
