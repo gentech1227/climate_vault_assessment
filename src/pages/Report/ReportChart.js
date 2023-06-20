@@ -79,7 +79,7 @@ const ReportChart = () => {
     ],
   };
   return (
-    <div className="w-2/3 min-w-96">
+    <div className="lg:w-2/3 md:w-full min-w-96">
       <CanvasJSChart options={options} />
     </div>
   );
