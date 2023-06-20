@@ -55,7 +55,7 @@ export const ReportChart = () => {
       data: [
         {
           type: "column",
-          name: data === amountMode ? "Sum of Amount" : "Sum of Times",
+          name: amountMode ? "Sum of Amount" : "Sum of Times",
           showInLegend: true,
           xValueFormatString: "MMMM YYYY",
           yValueFormatString: "$#,##0",
@@ -67,7 +67,7 @@ export const ReportChart = () => {
         },
         {
           type: "line",
-          name: data === amountMode ? "Cumulative Amount" : "Cumulative Times",
+          name: amountMode ? "Cumulative Amount" : "Cumulative Times",
           showInLegend: true,
           yValueFormatString: "$#,##0",
           dataPoints: monthly.reduce(

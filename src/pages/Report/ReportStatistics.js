@@ -18,7 +18,7 @@ export const ReportStatistics = () => {
       </Col>
       <Col span={6}>
         <Statistic
-          title={`Total ${data === amountMode ? "Amount" : "Times"}`}
+          title={`Total ${amountMode ? "Amount" : "Times"}`}
           value={total}
           precision={2}
           prefix={amountMode && "USD"}
